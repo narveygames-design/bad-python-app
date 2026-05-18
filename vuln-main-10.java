@@ -11,8 +11,9 @@ public class App
 
     private static void bad1() {
         try {
-            // ruleid: java-jwt-hardcoded-secret
-            Algorithm algorithm = Algorithm.HMAC256("secret");
+            // ok: java-jwt-hardcoded-secret
+            String secretKey = System.getenv("JWT_SECRET");
+            Algorithm algorithm = Algorithm.HMAC256(secretKey);
             String token = JWT.create()
                 .withIssuer("auth0")
                 .sign(algorithm);
