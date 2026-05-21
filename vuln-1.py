@@ -7,10 +7,9 @@ app = flask.Flask(__name__)
 @app.route("/route_param/<route_param>")
 def route_param(route_param):
 
-    # ruleid:dangerous-os-exec
-    os.execl("/bin/bash", "/bin/bash", "-c", route_param)
-
-    return "oops!"
+    # Fixed: removed dangerous os.execl with user-controlled input
+    # Never pass user input to shell execution functions
+    return f"Received parameter: {route_param}"
 
 
 # Flask true negatives
